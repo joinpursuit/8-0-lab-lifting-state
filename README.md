@@ -65,3 +65,5 @@ You should move the JSX into the correct components:
 You should maintain the same HTML element heiarchy (you should not need to add or edit HTML elements), however, you will need to move the HTML elements into different components. The filenames and functional component shells are already included in the starter code.
 
 You must pass props down, add state to some of the new components, and lift state in other places to maintain functionality and fix the bug in the app.
+
+![App demo](./ezgif.com-app-demo.gif)
