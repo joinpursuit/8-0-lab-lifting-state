@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Attendee from "./Attendee";
+import Attendees from "./Attendees";
 
 export default function Event({ events, setEvents }) {
   const [showAttendees, setShowAttendees] = useState(false);
@@ -38,9 +40,10 @@ export default function Event({ events, setEvents }) {
                 <span>Organized by: {event.organizer} </span>
                 <br />
                 <>
-                  <button onClick={toggleEventAttendees}>
-                    {!showAttendees ? "Show Attendees" : "Hide Attendees"}
-                  </button>
+                  <Attendee
+                    showAttendees={showAttendees}
+                    toggleEventAttendees={toggleEventAttendees}
+                  />
 
                   {showAttendees ? (
                     <div className="attendees">
