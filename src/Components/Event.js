@@ -1,26 +1,14 @@
 import { useState } from "react";
+
 import Attendee from "./Attendee";
 import Attendees from "./Attendees";
 
 export default function Event({ events, setEvents }) {
   const [showAttendees, setShowAttendees] = useState(false);
-
-  function toggleEventAttendees() {
+  const [eventToShow, setEventToShow] = useState("");
+  function toggleEventAttendees(id) {
     setShowAttendees(!showAttendees);
-  }
-
-  function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
-      (person) => person.id === attendeeId
-    );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
+    setEventToShow(id);
   }
 
   return (
@@ -30,60 +18,30 @@ export default function Event({ events, setEvents }) {
           const { people: attendees } = event;
 
           return (
-            <>
-              <li key={event.id}>
-                <img src={event.eventImage} alt={event.name} />
-                <h5>
-                  {event.name} {event.eventType}
-                </h5>
-                <br />
-                <span>Organized by: {event.organizer} </span>
-                <br />
-                <>
-                  <Attendee
-                    showAttendees={showAttendees}
-                    toggleEventAttendees={toggleEventAttendees}
-                  />
-
-                  {showAttendees ? (
-                    <div className="attendees">
-                      {attendees.map((attendee, index) => (
-                        <>
-                          <div key={attendee.id} className="attendee">
-                            <p>
-                              <img
-                                src={attendee.avatar}
-                                alt={attendee.firstName}
-                              />
-                              {"   "}
-                              <span>
-                                {" "}
-                                {attendee.firstName} {attendee.lastName}{" "}
-                              </span>
-                            </p>
-                            <p>
-                              <button
-                                className="clickable"
-                                onClick={() =>
-                                  updateEventAttendance(event.id, attendee.id)
-                                }
-                              >
-                                Attending:
-                              </button>
-                              <span>{attendee.attendance ? "✅" : "❌"}</span>
-                            </p>
-
-                            <p>
-                              <span>Note:</span> {attendee.note}
-                            </p>
-                          </div>
-                        </>
-                      ))}
-                    </div>
-                  ) : null}
-                </>
-              </li>
-            </>
+            <li key={event.id} className="event">
+              <img src={event.eventImage} alt={event.name} />
+              <h5>
+                {event.name} {event.eventType}
+              </h5>
+              <br />
+              <span>Organized by: {event.organizer} </span>
+              <br />
+              <Attendee
+                setEventToShow={setEventToShow}
+                eventID={event.id}
+                eventToShow={eventToShow}
+                showAttendees={showAttendees}
+                toggleEventAttendees={toggleEventAttendees}
+              />
+              <Attendees
+                attendees={attendees}
+                events={events}
+                setEvents={setEvents}
+                eventID={event.id}
+                eventToShow={eventToShow}
+                showAttendees={showAttendees}
+              />
+            </li>
           );
         })}
       </ul>

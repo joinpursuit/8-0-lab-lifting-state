@@ -1,7 +1,14 @@
-export default function Attendee({ showAttendees, toggleEventAttendees }) {
+export default function Attendee({
+  eventID,
+  eventToShow,
+  toggleEventAttendees,
+  showAttendees,
+}) {
   return (
-    <button onClick={toggleEventAttendees}>
-      {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+    <button onClick={() => toggleEventAttendees(eventID)}>
+      {showAttendees && eventToShow == eventID
+        ? "Hide Attendees"
+        : "Show Attendees"}
     </button>
   );
 }
