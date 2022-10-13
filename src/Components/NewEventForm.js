@@ -3,6 +3,7 @@ export default function NewEventForm({
   handleSubmit,
   handleTextChange,
   handleSelectChange,
+  selectOption,
 }) {
   return (
     <form onSubmit={handleSubmit}>
@@ -31,7 +32,7 @@ export default function NewEventForm({
         value={newEvent.eventImage}
       />
       <label htmlFor="eventType">Event type:</label>
-      <select id="eventType" onChange={handleSelectChange}>
+      <select id="eventType" value={selectOption} onChange={handleSelectChange}>
         <option value=""></option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
