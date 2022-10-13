@@ -101,6 +101,7 @@ function App() {
             HandleTextChange={handleTextChange}
             handleSelectChange={handleSelectChange}
             selectOption={selectOption}
+            newEvent={newEvent}
           />
         </div>
         <div className="events">

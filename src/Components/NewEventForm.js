@@ -4,6 +4,7 @@ export default function NewEventForm({
   handleTextChange,
   handleSelectChange,
   selectOption,
+  newEvent,
 }) {
   return (
     <form onSubmit={handleSubmit}>
