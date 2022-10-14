@@ -3,8 +3,6 @@
 import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
-import Attendees from "./Components/Attendees";
-import Attendee from "./Components/Attendee";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -113,6 +111,8 @@ function App() {
                   attendees={attendees}
                   event={event}
                   updateEventAttendance={updateEventAttendance}
+                  showAttendees={showAttendees}
+                  toggleEventAttendees={toggleEventAttendees}
                 />
               );
             })}
