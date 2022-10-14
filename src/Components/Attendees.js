@@ -2,7 +2,6 @@ import Attendee from "./Attendee";
 
 export default function Attendees({
   events,
-  event,
   attendees,
   updateEventAttendance,
   showAttendees,
@@ -18,7 +17,6 @@ export default function Attendees({
           {attendees.map((attendee, index) => (
             <>
               <Attendee
-                event={event}
                 events={events}
                 attendee={attendee}
                 updateEventAttendance={updateEventAttendance}
