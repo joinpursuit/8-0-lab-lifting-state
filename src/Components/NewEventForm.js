@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Event from "./Event";
 
 export default function NewEventForm({
+  events,
   handleAddEvent,
   handleSubmit,
   handleTextChange,

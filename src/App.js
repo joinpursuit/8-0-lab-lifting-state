@@ -3,8 +3,8 @@
 import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
-import Attendees from ".Components/Attendees";
-import Attendee from ".Components/Attendee";
+import Attendees from "./Components/Attendees";
+import Attendee from "./Components/Attendee";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -99,6 +99,7 @@ function App() {
       <Header />
       <main>
         <NewEventForm
+          events={events}
           handleSubmit={handleSubmit}
           handleTextChange={handleTextChange}
           handleSelectChange={handleSelectChange}
@@ -112,7 +113,11 @@ function App() {
           </ul>
         </div>
       </main>
-      <Attendees />
+      {/* <Attendees
+        toggleEventAttendees={toggleEventAttendees}
+        showAttendees={showAttendees}
+        events={events}
+      /> */}
 
       <Footer />
     </div>
