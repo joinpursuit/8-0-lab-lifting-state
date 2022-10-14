@@ -13,6 +13,7 @@ export default function Event({ event, attendees, updateEventAttendance }) {
         <span>Organized by: {event.organizer} </span>
         <br />
         <Attendees
+          attendees={attendees}
           event={attendees}
           event2={event}
           updateEventAttendance={updateEventAttendance}
