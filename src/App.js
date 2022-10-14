@@ -108,7 +108,13 @@ function App() {
           <ul>
             {events.map((event) => {
               const { people: attendees } = event;
-              return <Event event={event} />;
+              return (
+                <Event
+                  attendees={attendees}
+                  event={event}
+                  updateEventAttendance={updateEventAttendance}
+                />
+              );
             })}
           </ul>
         </div>
