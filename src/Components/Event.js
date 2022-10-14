@@ -1,7 +1,12 @@
-import { useState } from "react";
 import Attendees from "./Attendees";
 
-export default function Event({ event, attendees, updateEventAttendance }) {
+export default function Event({
+  event,
+  attendees,
+  showAttendees,
+  toggleEventAttendees,
+  updateEventAttendance,
+}) {
   return (
     <>
       <li key={event.id}>
@@ -14,8 +19,11 @@ export default function Event({ event, attendees, updateEventAttendance }) {
         <br />
         <Attendees
           event={attendees}
+          attendees={attendees}
           event2={event}
           updateEventAttendance={updateEventAttendance}
+          showAttendees={showAttendees}
+          toggleEventAttendees={toggleEventAttendees}
         />
       </li>
     </>

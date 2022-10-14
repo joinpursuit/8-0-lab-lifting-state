@@ -1,4 +1,5 @@
 export default function Attendee({
+  index,
   event,
   event2,
   events,
