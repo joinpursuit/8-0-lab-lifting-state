@@ -1,3 +1,1 @@
-export default function Attendee() {
-  return;
-}
+export default function Attendee() {}
