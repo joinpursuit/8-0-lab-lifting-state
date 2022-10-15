@@ -1,76 +1,36 @@
-// import Attendee from "./Attendee";
+import Attendees from "./Attendees";
+import { useState } from "react";
 
-export default function Event({
-  toggleEventAttendees,
-  showAttendees,
-  // attendees,
-  event,
-  events,
-  updateEventAttendance,
-}) {
+export default function Event({ event, attendees, updateEventAttendance }) {
+  const [showAttendees, setShowAttendees] = useState(false);
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
+
   return (
-    <div className="events">
-      <ul>
-        {events.map((event) => {
-          const { people: attendees } = event;
+    <div className="event">
+      <li key={event.id}>
+        <img src={event.eventImage} alt={event.name} />
+        <h5>
+          {event.name} {event.eventType}
+        </h5>
+        <br />
+        <span>Organized by: {event.organizer} </span>
+        <br />
+        <>
+          <button onClick={toggleEventAttendees}>
+            {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+          </button>
 
-          return (
-            <>
-              <li key={event.id}>
-                <img src={event.eventImage} alt={event.name} />
-                <h5>
-                  {event.name} {event.eventType}
-                </h5>
-                <br />
-                <span>Organized by: {event.organizer} </span>
-                <br />
-
-                <>
-                  <button onClick={toggleEventAttendees}>
-                    {!showAttendees ? "Show Attendees" : "Hide Attendees"}
-                  </button>
-                  {showAttendees ? (
-                    <div className="attendees">
-                      {attendees.map((attendee, index) => (
-                        <>
-                          <div key={attendee.id} className="attendee">
-                            <p>
-                              <img
-                                src={attendee.avatar}
-                                alt={attendee.firstName}
-                              />
-                              {"   "}
-                              <span>
-                                {" "}
-                                {attendee.firstName} {attendee.lastName}{" "}
-                              </span>
-                            </p>
-                            <p>
-                              <button
-                                className="clickable"
-                                onClick={() =>
-                                  updateEventAttendance(event.id, attendee.id)
-                                }
-                              >
-                                Attending:
-                              </button>
-                              <span>{attendee.attendance ? "✅" : "❌"}</span>
-                            </p>
-
-                            <p>
-                              <span>Note:</span> {attendee.note}
-                            </p>
-                          </div>
-                        </>
-                      ))}
-                    </div>
-                  ) : null}
-                </>
-              </li>
-            </>
-          );
-        })}
-      </ul>
+          {showAttendees ? (
+            <Attendees
+              attendees={attendees}
+              updateEventAttendance={updateEventAttendance}
+              event={event}
+            />
+          ) : null}
+        </>
+      </li>
     </div>
   );
 }

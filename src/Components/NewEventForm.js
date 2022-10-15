@@ -1,17 +1,9 @@
 export default function NewEventForm({
-  handleAddEvent,
   handleSubmit,
   handleTextChange,
   handleSelectChange,
   newEvent,
-  setNewEvent,
 }) {
-  // function handleTextChange(e) {
-  //   setNewEvent({
-  //     ...newEvent,
-  //     [e.target.id]: e.target.value,
-  //   });
-  // }
   return (
     <>
       <form onSubmit={handleSubmit}>
