@@ -3,8 +3,8 @@ import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
-// import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 // import NewEventForm from "./Components/NewEventForm";
 
 function App() {
@@ -92,7 +92,8 @@ function App() {
     <div className="App">
       <>
         <header>
-          <h1 className="color-change-5x">RSVP App</h1>
+          {/**placed h1 in header component and imported it */}
+         <Header/>
         </header>
       </>
       <main>
@@ -208,11 +209,8 @@ function App() {
       </main>
       <>
         <footer>
-          <ul>
-            <li>Contact</li>
-            <li>About</li>
-            <li>Legal</li>
-          </ul>
+          {/**placed ul and lis in footer component and imported it */}
+          <Footer/>
         </footer>
       </>
     </div>
