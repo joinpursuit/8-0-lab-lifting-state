@@ -5,6 +5,7 @@ import { v1 as generateUniqueID } from "uuid";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import NewEventForm from "./Components/NewEventForm";
 // import NewEventForm from "./Components/NewEventForm";
 
 function App() {
@@ -96,7 +97,14 @@ function App() {
       <main>
         <div className="new-event">
           <>
-            <form onSubmit={handleSubmit}>
+            <NewEventForm
+              handleAddEvent={handleAddEvent}
+              handleSubmit={handleSubmit}
+              handleTextChange={handleTextChange}
+              handleSelectChange={handleSelectChange}
+              newEvent={newEvent}
+            />
+            {/* <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
               <label htmlFor="name">Event name:</label>
               <input
@@ -132,29 +140,87 @@ function App() {
               </select>
               <br />
               <input type="submit" />
-            </form>
+            </form> */}
           </>
+          {/* //! end of event form */}
         </div>
-        <div className="events">
+        {/* //! start of even */}
+        <Event
+          toggleEventAttendees={toggleEventAttendees}
+          showAttendees={showAttendees}
+          // attendees={attendees}
+          // event={event}
+          events={events}
+          updateEventAttendance={updateEventAttendance}
+        />
+        {/* <div className="events">
           <ul>
             {events.map((event) => {
               const { people: attendees } = event;
 
               return (
-                //! Event
                 <>
-                  <Event
-                    toggleEventAttendees={toggleEventAttendees}
-                    showAttendees={showAttendees}
-                    attendees={attendees}
-                    updateEventAttendance={updateEventAttendance}
-                    event={event}
-                  />
+                  <li key={event.id}>
+                    <img src={event.eventImage} alt={event.name} />
+                    <h5>
+                      {event.name} {event.eventType}
+                    </h5>
+                    <br />
+                    <span>Organized by: {event.organizer} </span>
+                    <br />
+
+                    <>
+                      <button onClick={toggleEventAttendees}>
+                        {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+                      </button>
+                      {showAttendees ? (
+                        <div className="attendees">
+                          {attendees.map((attendee, index) => (
+                            <>
+                              <div key={attendee.id} className="attendee">
+                                <p>
+                                  <img
+                                    src={attendee.avatar}
+                                    alt={attendee.firstName}
+                                  />
+                                  {"   "}
+                                  <span>
+                                    {" "}
+                                    {attendee.firstName} {attendee.lastName}{" "}
+                                  </span>
+                                </p>
+                                <p>
+                                  <button
+                                    className="clickable"
+                                    onClick={() =>
+                                      updateEventAttendance(
+                                        event.id,
+                                        attendee.id
+                                      )
+                                    }
+                                  >
+                                    Attending:
+                                  </button>
+                                  <span>
+                                    {attendee.attendance ? "✅" : "❌"}
+                                  </span>
+                                </p>
+
+                                <p>
+                                  <span>Note:</span> {attendee.note}
+                                </p>
+                              </div>
+                            </>
+                          ))}
+                        </div>
+                      ) : null}
+                    </>
+                  </li>
                 </>
               );
             })}
           </ul>
-        </div>
+        </div> */}
       </main>
       <>
         <Footer />

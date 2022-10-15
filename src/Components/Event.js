@@ -1,60 +1,76 @@
+// import Attendee from "./Attendee";
+
 export default function Event({
   toggleEventAttendees,
   showAttendees,
-  attendees,
-  updateEventAttendance,
+  // attendees,
   event,
+  events,
+  updateEventAttendance,
 }) {
   return (
-    <>
-      <li key={event.id}>
-        <img src={event.eventImage} alt={event.name} />
-        <h5>
-          {event.name} {event.eventType}
-        </h5>
-        <br />
-        <span>Organized by: {event.organizer} </span>
-        <br />
-        <>
-          <button onClick={toggleEventAttendees}>
-            {!showAttendees ? "Show Attendees" : "Hide Attendees"}
-          </button>
+    <div className="events">
+      <ul>
+        {events.map((event) => {
+          const { people: attendees } = event;
 
-          {showAttendees ? (
-            <div className="attendees">
-              {attendees.map((attendee, index) => (
+          return (
+            <>
+              <li key={event.id}>
+                <img src={event.eventImage} alt={event.name} />
+                <h5>
+                  {event.name} {event.eventType}
+                </h5>
+                <br />
+                <span>Organized by: {event.organizer} </span>
+                <br />
+
                 <>
-                  <div key={attendee.id} className="attendee">
-                    <p>
-                      <img src={attendee.avatar} alt={attendee.firstName} />
-                      {"   "}
-                      <span>
-                        {" "}
-                        {attendee.firstName} {attendee.lastName}{" "}
-                      </span>
-                    </p>
-                    <p>
-                      <button
-                        className="clickable"
-                        onClick={() =>
-                          updateEventAttendance(event.id, attendee.id)
-                        }
-                      >
-                        Attending:
-                      </button>
-                      <span>{attendee.attendance ? "✅" : "❌"}</span>
-                    </p>
+                  <button onClick={toggleEventAttendees}>
+                    {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+                  </button>
+                  {showAttendees ? (
+                    <div className="attendees">
+                      {attendees.map((attendee, index) => (
+                        <>
+                          <div key={attendee.id} className="attendee">
+                            <p>
+                              <img
+                                src={attendee.avatar}
+                                alt={attendee.firstName}
+                              />
+                              {"   "}
+                              <span>
+                                {" "}
+                                {attendee.firstName} {attendee.lastName}{" "}
+                              </span>
+                            </p>
+                            <p>
+                              <button
+                                className="clickable"
+                                onClick={() =>
+                                  updateEventAttendance(event.id, attendee.id)
+                                }
+                              >
+                                Attending:
+                              </button>
+                              <span>{attendee.attendance ? "✅" : "❌"}</span>
+                            </p>
 
-                    <p>
-                      <span>Note:</span> {attendee.note}
-                    </p>
-                  </div>
+                            <p>
+                              <span>Note:</span> {attendee.note}
+                            </p>
+                          </div>
+                        </>
+                      ))}
+                    </div>
+                  ) : null}
                 </>
-              ))}
-            </div>
-          ) : null}
-        </>
-      </li>
-    </>
+              </li>
+            </>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
