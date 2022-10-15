@@ -198,16 +198,16 @@ input[type="submit"] {
     margin: auto;
   }
 
-  .events {
+  .event {
     width: 100%;
     margin-top: 1em;
   }
 
-  .events img {
+  .event img {
     width: 100%;
   }
 
-  .events li {
+  .event li {
     width: 49%;
     min-height: 425px;
   }
