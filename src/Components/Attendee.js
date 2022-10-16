@@ -1,14 +1,32 @@
 export default function Attendee({
   eventID,
-  eventToShow,
-  toggleEventAttendees,
-  showAttendees,
+  attendee,
+  updateEventAttendance
 }) {
+
   return (
-    <button onClick={() => toggleEventAttendees(eventID)}>
-      {showAttendees && eventToShow == eventID
-        ? "Hide Attendees"
-        : "Show Attendees"}
-    </button>
+    <div className="attendee">
+      <p>
+        <img src={attendee.avatar} alt={attendee.firstName} />
+        {"   "}
+        <span>
+          {" "}
+          {attendee.firstName} {attendee.lastName}{" "}
+        </span>
+      </p>
+      <p>
+        <button
+          className="clickable"
+          onClick={() => updateEventAttendance(eventID, attendee.id)}
+        >
+          Attending:
+        </button>
+        <span>{attendee.attendance ? "✅" : "❌"}</span>
+      </p>
+
+      <p>
+        <span>Note:</span> {attendee.note}
+      </p>
+    </div>
   );
 }
