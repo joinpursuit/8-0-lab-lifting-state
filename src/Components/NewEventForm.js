@@ -1,5 +1,4 @@
 export default function NewEventForm({
-  handleAddEvent,
   handleTextChange,
   newEvent,
   handleSelectChange,
