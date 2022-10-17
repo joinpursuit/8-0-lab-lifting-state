@@ -1,7 +1,7 @@
 import Attendees from "./Attendees";
 
 export default function Event(
-  { event }
+  { event, attendees, updateEventAttendance }
 ) {
   return (
     <>
@@ -15,7 +15,8 @@ export default function Event(
         <br />
         <Attendees
         event={event}
-        attendees={event.people}
+        attendees={attendees}
+        updateEventAttendance={updateEventAttendance}
         />
       </li>
     </>

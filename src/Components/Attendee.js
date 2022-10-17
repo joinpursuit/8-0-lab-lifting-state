@@ -1,4 +1,4 @@
-export default function Attendee({attendee}) {
+export default function Attendee({attendee, event , updateEventAttendance}) {
   return (
     <>
       <div key={attendee.id} className="attendee">
@@ -13,7 +13,7 @@ export default function Attendee({attendee}) {
         <p>
           <button
             className="clickable"
-            // onClick={() => updateEventAttendance(event.id, attendee.id)}
+            onClick={() => updateEventAttendance(event.id, attendee.id)}
           >
             Attending:
           </button>
