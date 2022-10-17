@@ -1,7 +1,4 @@
-import { useState } from "react"
-import { v1 as generateUniqueID } from "uuid"
 export default function NewEventForm({
-  handleAddEvent,
   handleTextChange,
   handleSelectChange,
   handleSubmit,
