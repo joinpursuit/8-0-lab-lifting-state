@@ -29,7 +29,7 @@ function App() {
 
 // Added Code
 
-  const [people, setPeople] = useState([])
+  // const [people, setPeople] = useState([])
 
 
   function addEvent() {
@@ -109,7 +109,8 @@ function App() {
           handleSubmit ={handleSubmit}
           handleTextChange={handleTextChange}
           newEvent ={newEvent}
-          handleSelectChange ={handleSelectChange} />
+          handleSelectChange ={handleSelectChange}
+          selectOption ={selectOption} />
         </div>
 
         <div className="events">
