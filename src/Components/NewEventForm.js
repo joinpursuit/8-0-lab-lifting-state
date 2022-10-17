@@ -1,4 +1,10 @@
-export default function NewEventForm({ handleAddEvent }) {
+export default function NewEventForm({
+  handleAddEvent,
+  handleSubmit,
+  handleTextChange,
+  newEvent,
+  handleSelectChange,
+}) {
   return (
     <>
       <form onSubmit={handleSubmit}>

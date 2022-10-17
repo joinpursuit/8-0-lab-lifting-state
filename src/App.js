@@ -93,7 +93,12 @@ function App() {
       <Header />
       <main>
         <div className="new-event">
-          <NewEventForm />
+          <NewEventForm
+            handleSubmit={handleSubmit}
+            handleTextChange={handleTextChange}
+            newEvent={newEvent}
+            handleSelectChange={handleSelectChange}
+          />
         </div>
         <div className="events">
           <ul>
