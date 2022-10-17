@@ -1,7 +1,6 @@
 export default function NewEventForm({ handleAddEvent, handleSubmit, handleTextChange, newEvent, handleSelectChange }) {
   
   return (
-    <div className="new-event">
       <>
         <form onSubmit={handleSubmit}>
           <h3>Create a new event</h3>
@@ -41,6 +40,5 @@ export default function NewEventForm({ handleAddEvent, handleSubmit, handleTextC
           <input type="submit" />
         </form>
       </>
-    </div>
   );
 }

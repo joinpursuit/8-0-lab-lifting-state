@@ -10,8 +10,6 @@ import Attendees from "./Components/Attendees";
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
-
   const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
@@ -70,10 +68,6 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
     const eventIndex = eventArray.findIndex((event) => eventId === event.id);
@@ -90,22 +84,43 @@ function App() {
 
   return (
     <div className="App">
-     <Header />
+      <>
+        <Header />
+      </>
       <main>
-      <NewEventForm 
-      handleSubmit={handleSubmit} 
-      handleTextChange={handleTextChange}
-      newEvent={newEvent}
-      handleSelectChange={handleSelectChange}
-      />
-       <Event 
-       events={events}
-       toggleEventAttendees={toggleEventAttendees}
-       showAttendees={showAttendees}
-       updateEventAttendance={updateEventAttendance}
-       />
+        <div className="new-event">
+          <>
+            <NewEventForm
+              handleSubmit={handleSubmit}
+              handleTextChange={handleTextChange}
+              newEvent={newEvent}
+              handleSelectChange={handleSelectChange}
+            />
+          </>
+        </div>
+
+        <div className="events">
+          <ul>
+            {events.map((event) => {
+              const { people: attendees } = event;
+
+              return (
+                <>
+                  <Event
+                    event={event}
+                    //  toggleEventAttendees={toggleEventAttendees}
+                    updateEventAttendance={updateEventAttendance}
+                    attendees={attendees}
+                  />
+                </>
+              );
+            })}
+          </ul>
+        </div>
       </main>
-      <Footer />
+      <>
+        <Footer />
+      </>
     </div>
   );
 }
