@@ -1,7 +1,6 @@
 import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
-// import Attendees from "./Attendees";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -9,8 +8,6 @@ import NewEventForm from "./Components/NewEventForm";
 
 function App() {
   const [events, setEvents] = useState(eventsData);
-
-  const [showAttendees, setShowAttendees] = useState(false);
 
   const [selectOption, setSelectOption] = useState("");
 
@@ -70,10 +67,6 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
     const eventIndex = eventArray.findIndex((event) => eventId === event.id);
@@ -109,7 +102,10 @@ function App() {
             {events.map((event) => {
               const { people: attendees } = event;
               return (
-                <Event event={event}/>
+                <Event
+                  event={event}
+                  updateEventAttendance={updateEventAttendance}
+                />
               );
             })}
           </ul>
