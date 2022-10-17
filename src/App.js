@@ -10,8 +10,6 @@ import NewEventForm from "./Components/NewEventForm";
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
-
   const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
@@ -70,10 +68,6 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
     const eventIndex = eventArray.findIndex((event) => eventId === event.id);
@@ -97,22 +91,28 @@ function App() {
         <div className="new-event">
           <>
             <NewEventForm
-              handleSelectChange={handleSelectChange}
+              handleAddEvent={handleAddEvent}
               handleSubmit={handleSubmit}
               handleTextChange={handleTextChange}
-              handleAddEvent={handleAddEvent}
-              resetEventForm={resetEventForm}
               newEvent={newEvent}
+              handleSelectChange={handleSelectChange}
             />
           </>
         </div>
         <div className="events">
-          <Event
-            events={events}
-            showAttendees={showAttendees}
-            toggleEventAttendees={toggleEventAttendees}
-            updateEventAttendance={updateEventAttendance}
-          />
+          <ul>
+            {events.map((event) => {
+              const { people: attendees } = event;
+
+              return (
+                <Event
+                  attendees={attendees}
+                  event={event}
+                  updateEventAttendance={updateEventAttendance}
+                />
+              );
+            })}
+          </ul>
         </div>
       </main>
       <>
