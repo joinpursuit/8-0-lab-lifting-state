@@ -1,10 +1,17 @@
+import { useState } from "react";
+
 export default function Event({
   event,
   attendees,
   toggleEventAttendees,
   updateEventAttendance,
-  showAttendees,
 }) {
+  const [showAttendees, setShowAttendees] = useState(false);
+
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
+
   return (
     <>
       <li key={event.id}>

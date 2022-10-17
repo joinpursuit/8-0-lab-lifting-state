@@ -10,8 +10,6 @@ import NewEventForm from "./Components/NewEventForm";
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
-
   const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
@@ -70,10 +68,6 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
     const eventIndex = eventArray.findIndex((event) => eventId === event.id);
@@ -112,7 +106,6 @@ function App() {
                   key={event.id}
                   event={event}
                   attendees={attendees}
-                  toggleEventAttendees={toggleEventAttendees}
                   updateEventAttendance={updateEventAttendance}
                 />
               );
