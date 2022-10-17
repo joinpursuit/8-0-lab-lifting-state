@@ -15,7 +15,7 @@ export default function Event({
 
   return (
     <>
-      <li key={event.id}>
+      <li key={event.id} className="event">
         <img src={event.eventImage} alt={event.name} />
         <h5>
           {event.name} {event.eventType}

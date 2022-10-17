@@ -52,7 +52,7 @@ describe("Can create a new event", () => {
   });
 });
 
-describe("can show/hide attendees per event", () => {
+describe.only("can show/hide attendees per event", () => {
   it("can show/hide attendees", () => {
     cy.get(".events button")
       .eq(3)
