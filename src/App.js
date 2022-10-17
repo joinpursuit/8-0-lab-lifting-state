@@ -105,6 +105,7 @@ function App() {
                 <Event
                   event={event}
                   updateEventAttendance={updateEventAttendance}
+                  attendees={attendees}
                 />
               );
             })}

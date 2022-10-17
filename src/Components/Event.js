@@ -14,6 +14,8 @@ export default function Event(
         <span>Organized by: {event.organizer} </span>
         <br />
         <Attendees
+        event={event}
+        attendees={event.people}
         />
       </li>
     </>
