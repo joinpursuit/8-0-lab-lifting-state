@@ -17,6 +17,7 @@ export default function Attendees({
         <div className="attendees">
           {attendees.map((attendee, index) => (
             <Attendee
+              key={index}
               updateEventAttendance={updateEventAttendance}
               attendee={attendee}
               event={event}
