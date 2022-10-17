@@ -1,3 +1,5 @@
+import Attendee from "./Attendee";
+
 export default function Attendees({
   attendees,
   event,
@@ -14,31 +16,12 @@ export default function Attendees({
       {showAttendees ? (
         <div className="attendees">
           {attendees.map((attendee, index) => (
-            <>
-              <div key={attendee.id} className="attendee">
-                <p>
-                  <img src={attendee.avatar} alt={attendee.firstName} />
-                  {"   "}
-                  <span>
-                    {" "}
-                    {attendee.firstName} {attendee.lastName}{" "}
-                  </span>
-                </p>
-                <p>
-                  <button
-                    className="clickable"
-                    onClick={() => updateEventAttendance(event.id, attendee.id)}
-                  >
-                    Attending:
-                  </button>
-                  <span>{attendee.attendance ? "✅" : "❌"}</span>
-                </p>
-
-                <p>
-                  <span>Note:</span> {attendee.note}
-                </p>
-              </div>
-            </>
+            <Attendee
+              key={index}
+              event={event}
+              attendee={attendee}
+              updateEventAttendance={updateEventAttendance}
+            />
           ))}
         </div>
       ) : null}
