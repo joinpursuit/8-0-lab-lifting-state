@@ -95,11 +95,12 @@ function App() {
         </div>
         <div className="events">
           <ul>
-            {events.map((event) => {
+            {events.map((event, index) => {
               const { people: attendees } = event;
 
               return (
                 <Event
+                  key={index}
                   event={event}
                   attendees={attendees}
                   updateEventAttendance={updateEventAttendance}
