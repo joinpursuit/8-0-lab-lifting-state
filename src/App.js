@@ -83,13 +83,15 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <>
+        <Header />
+      </>
       <main>
         <div className="new-event">
           <NewEventForm
+            newEvent={newEvent}
             handleSubmit={handleSubmit}
             handleTextChange={handleTextChange}
-            newEvent={newEvent}
             handleSelectChange={handleSelectChange}
           />
         </div>
@@ -100,7 +102,7 @@ function App() {
 
               return (
                 <Event
-                  key={index}
+                  key={event.id}
                   event={event}
                   attendees={attendees}
                   updateEventAttendance={updateEventAttendance}

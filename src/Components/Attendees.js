@@ -1,11 +1,11 @@
 import Attendee from "./Attendee";
 
 export default function Attendees({
-  toggleEventAttendees,
-  showAttendees,
   attendees,
-  updateEventAttendance,
   event,
+  toggleEventAttendees,
+  updateEventAttendance,
+  showAttendees,
 }) {
   return (
     <>
@@ -18,9 +18,9 @@ export default function Attendees({
           {attendees.map((attendee, index) => (
             <Attendee
               key={index}
-              updateEventAttendance={updateEventAttendance}
-              attendee={attendee}
               event={event}
+              attendee={attendee}
+              updateEventAttendance={updateEventAttendance}
             />
           ))}
         </div>

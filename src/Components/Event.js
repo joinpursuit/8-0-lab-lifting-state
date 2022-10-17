@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Attendees from "./Attendees";
 
-export default function Event({ event, attendees, updateEventAttendance }) {
+export default function Event({
+  event,
+  attendees,
+  toggleEventAttendees,
+  updateEventAttendance,
+}) {
   const [showAttendees, setShowAttendees] = useState(false);
 
   function toggleEventAttendees() {
@@ -19,11 +24,11 @@ export default function Event({ event, attendees, updateEventAttendance }) {
         <span>Organized by: {event.organizer} </span>
         <br />
         <Attendees
-          toggleEventAttendees={toggleEventAttendees}
-          showAttendees={showAttendees}
-          attendees={attendees}
-          updateEventAttendance={updateEventAttendance}
           event={event}
+          attendees={attendees}
+          toggleEventAttendees={toggleEventAttendees}
+          updateEventAttendance={updateEventAttendance}
+          showAttendees={showAttendees}
         />
       </li>
     </>
