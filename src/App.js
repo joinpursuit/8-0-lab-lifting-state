@@ -94,6 +94,8 @@ function App() {
               handleTextChange={handleTextChange}
               newEvent={newEvent}
               handleSelectChange={handleSelectChange}
+              handleAddEvent={handleAddEvent}
+              selectOption={selectOption}
             />
           </>
         </div>
@@ -101,7 +103,6 @@ function App() {
           <ul>
             {events.map((event) => {
               const { people: attendees } = event;
-
               return (
                 <Event
                   event={event}
