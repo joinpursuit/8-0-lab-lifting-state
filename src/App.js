@@ -2,7 +2,7 @@ import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
-// import Event from "./Components/Event";
+import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
@@ -105,7 +105,15 @@ function App() {
             {events.map((event) => {
               const { people: attendees } = event;
 
-              return <Event />;
+              return (
+                <Event
+                  event={event}
+                  toggleEventAttendees={toggleEventAttendees}
+                  showAttendees={showAttendees}
+                  attendees={attendees}
+                  updateEventAttendance={updateEventAttendance}
+                />
+              );
             })}
           </ul>
         </div>

@@ -1,4 +1,10 @@
-export default function Event() {
+export default function Event({
+  event,
+  toggleEventAttendees,
+  showAttendees,
+  attendees,
+  updateEventAttendance,
+}) {
   return (
     <>
       <li key={event.id}>
