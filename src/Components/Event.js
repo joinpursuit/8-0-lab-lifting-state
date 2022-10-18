@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Attendees from "./Attendees";
 
 export default function Event({
@@ -5,8 +6,12 @@ export default function Event({
   attendees,
   updateEventAttendance,
   toggleEventAttendees,
-  showAttendees,
 }) {
+  const [showAttendees, setShowAttendees] = useState(false);
+
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
   return (
     <>
       <li key={event.id}>

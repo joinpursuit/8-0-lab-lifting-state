@@ -17,6 +17,7 @@ export default function Attendees({
           {attendees.map((attendee, index) => (
             <>
               <Attendee
+                index={index}
                 attendee={attendee}
                 updateEventAttendance={updateEventAttendance}
               />

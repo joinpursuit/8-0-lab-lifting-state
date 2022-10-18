@@ -18,6 +18,13 @@ export default function NewEventForm({
     people: [],
   });
 
+  function handleTextChange(e) {
+    setNewEvent({
+      ...newEvent,
+      [e.target.id]: e.target.value,
+    });
+  }
+
   return (
     <div className="new-event">
       <>

@@ -12,8 +12,6 @@ function App() {
   //******* STATES ******/
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
-
   const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
@@ -74,10 +72,6 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
     const eventIndex = eventArray.findIndex((event) => eventId === event.id);
@@ -111,8 +105,6 @@ function App() {
                   attendees={attendees}
                   event={event}
                   updateEventAttendance={updateEventAttendance}
-                  showAttendees={showAttendees}
-                  toggleEventAttendees={toggleEventAttendees}
                 />
               );
             })}
