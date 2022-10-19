@@ -1,8 +1,10 @@
 import Attendee from "./Attendee";
-
-export default function Attendees({ event, attendees, updateEventAttendance,toggleEventAttendees,showAttendees}) {
-  // const [showAttendees, setShowAttendees] = useState(false);
-  
+import { useState } from "react";
+export default function Attendees({ event, attendees, updateEventAttendance}) {
+  const [showAttendees, setShowAttendees] = useState(false);
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
   return(
     
     <div>

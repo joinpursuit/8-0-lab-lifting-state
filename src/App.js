@@ -11,7 +11,7 @@ import NewEventForm from "./Components/NewEventForm";
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
+  // const [showAttendees, setShowAttendees] = useState(false);
 
   const [selectOption, setSelectOption] = useState("");
 
@@ -71,9 +71,7 @@ function App() {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
+ 
 
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
@@ -102,7 +100,7 @@ function App() {
       <main>
         <div className="new-event">
           <>
-            <NewEventForm newEvent={newEvent} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit} handleTextChange={handleTextChange} toggleEventAttendees={toggleEventAttendees}/>
+            <NewEventForm newEvent={newEvent} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit} handleTextChange={handleTextChange} />
           </>
         </div>
         <div className="events">
@@ -113,11 +111,11 @@ function App() {
         return (
           <>
           <li key={event.id}>
-            <Event updateEventAttendance={updateEventAttendance} event={event} attendees={attendees} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit} handleTextChange={handleTextChange} toggleEventAttendees={toggleEventAttendees}/>
+            <Event updateEventAttendance={updateEventAttendance} event={event} attendees={attendees} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit} handleTextChange={handleTextChange} />
             
             <br />
               <>
-                <Attendees   showAttendees={showAttendees} event={event} updateEventAttendance={updateEventAttendance}  attendees={attendees} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit}  toggleEventAttendees={toggleEventAttendees} />
+                <Attendees   event={event} updateEventAttendance={updateEventAttendance}  attendees={attendees} handleSelectChange={handleSelectChange} handleSubmit={handleSubmit}   />
               </>
             </li>
           </>

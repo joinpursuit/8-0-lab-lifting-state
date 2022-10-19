@@ -5,7 +5,7 @@
 export default function Event({event}) {
 
   return(
-   <div>
+   <div className="event">
               <img src={event.eventImage} alt={event.name} />
               <h5>
                 {event.name} {event.eventType}
