@@ -1,7 +1,8 @@
-import { useState } from "react";
+// import { update } from "cypress/types/lodash";
 import Attendees from "./Attendees";
 
-export default function Event() {
+export default function Event({ event, toggleEventAttendees, updateEventAttendance, showAttendees }) {
+
 
   return(
     <>
@@ -13,7 +14,14 @@ export default function Event() {
         <br />
         <span>Organized by: {event.organizer} </span>
         <br />
-        <Attendees />
+        <button onClick={toggleEventAttendees}>
+            {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+          </button>
+        <Attendees 
+          event={event}
+          updateEventAttendance={updateEventAttendance}
+          showAttendees={showAttendees}
+        />
       </li>
     </>
 

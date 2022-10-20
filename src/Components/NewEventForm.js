@@ -2,19 +2,9 @@ import { v1 as generateUniqueID } from "uuid";
 import { useState } from "react";
 
 
-export default function NewEventForm({ handleAddEvent }) {
-  
-  const [selectOption, setSelectOption] = useState("");
+export default function NewEventForm({ newEvent, setNewEvent, events, setEvents }) {
 
-  const [newEvent, setNewEvent] = useState({
-    id: "",
-    eventType: "",
-    name: "",
-    organizer: "",
-    eventImage: "",
-    date: "",
-    people: [],
-  });
+  const [selectOption, setSelectOption] = useState("");
 
   function addEvent() {
     const createEvent = {
@@ -29,14 +19,12 @@ export default function NewEventForm({ handleAddEvent }) {
     handleAddEvent(createEvent);
   }
 
-  function handleSelectChange(e) {
-    setSelectOption(e.target.value);
+  function handleAddEvent(event) {
+    setEvents([event, ...events]);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
+  function handleSelectChange(e) {
+    setSelectOption(e.target.value);
   }
 
   function handleTextChange(e) {
@@ -46,6 +34,12 @@ export default function NewEventForm({ handleAddEvent }) {
     });
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    addEvent();
+    resetEventForm();
+  }
+ 
   function resetEventForm() {
     setNewEvent({
       id: "",
@@ -57,6 +51,7 @@ export default function NewEventForm({ handleAddEvent }) {
     });
     setSelectOption("");
   }
+  
 
   return(
     <>
