@@ -2,7 +2,6 @@ import { useState } from "react";
 import eventsData from "./data";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
-// import Attendees from "./Attendees";
 import Event from "./Components/Event";
 import NewEventForm from "./Components/NewEventForm";
 
@@ -22,23 +21,24 @@ function App() {
     eventArray[eventIndex] = event;
     setEvents(eventArray);
   }
-  
 
   return (
     <div className="App">
       <Header />
       <main>
-      <NewEventForm events={events} setEvents={setEvents} />
+        <NewEventForm events={events} setEvents={setEvents} />
         <div className="events">
           <ul>
-            { 
-              events.map(event => (
-                <Event event={event}  key={event.id} updateEventAttendance={updateEventAttendance} />
-                ))
-            }
+            {events.map((event) => (
+              <Event
+                event={event}
+                key={event.id}
+                updateEventAttendance={updateEventAttendance}
+              />
+            ))}
           </ul>
         </div>
-      
+
         {/* <Event events={events} setEvents={setEvents} /> */}
       </main>
       <Footer />
