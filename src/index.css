@@ -84,17 +84,17 @@ input[type="submit"] {
   background: #fcdebe;
 }
 
-.events {
+.event {
   width: 70%;
 }
 
-.events img {
+.event img {
   width: 200px;
   max-height: 300px;
   margin: auto;
 }
 
-.events li {
+.event li {
   width: 48%;
   min-height: 360px;
   box-shadow: 2px 2px 4px black;
