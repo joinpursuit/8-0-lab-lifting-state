@@ -2,24 +2,75 @@ import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
-// import Event from "./Components/Event";
+import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
-// import NewEventForm from "./Components/NewEventForm";
 
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
+  // const [showAttendees, setShowAttendees] = useState(false);
+
+  const [selectOption, setSelectOption] = useState("");
+
+  const [newEvent, setNewEvent] = useState({
+    id: "",
+    eventType: "",
+    name: "",
+    organizer: "",
+    eventImage: "",
+    date: "",
+    people: [],
+  });
+
+  function addEvent() {
+    const createEvent = {
+      id: generateUniqueID(),
+      eventType: selectOption,
+      name: newEvent.name,
+      organizer: newEvent.organizer,
+      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
+      date: newEvent.date,
+      people: [],
+    };
+    handleAddEvent(createEvent);
+  }
 
   function handleAddEvent(event) {
     setEvents([event, ...events]);
   }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
+  function handleSelectChange(e) {
+    setSelectOption(e.target.value);
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+    addEvent();
+    resetEventForm();
+  }
+  function handleTextChange(e) {
+    setNewEvent({
+      ...newEvent,
+      [e.target.id]: e.target.value,
+    });
+  }
+
+  function resetEventForm() {
+    setNewEvent({
+      id: "",
+      eventType: "",
+      name: "",
+      organizer: "",
+      eventImage: "",
+      date: "",
+    });
+    setSelectOption("");
+  }
+
+  // function toggleEventAttendees() {
+  //   setShowAttendees(!showAttendees);
+  // }
 
   function updateEventAttendance(eventId, attendeeId) {
     const eventArray = [...events];
@@ -40,7 +91,13 @@ function App() {
       <Header />
       <main>
         <div className="new-event">
-          <NewEventForm />
+          <NewEventForm
+            handleAddEvent={handleAddEvent}
+            handleSubmit={handleSubmit}
+            handleTextChange={handleTextChange}
+            newEvent={newEvent}
+            handleSelectChange={handleSelectChange}
+          />
         </div>
         <div className="events">
           <ul>
@@ -48,67 +105,11 @@ function App() {
               const { people: attendees } = event;
 
               return (
-                <>
-                  {/* Event */}
-                  <li key={event.id}>
-                    <img src={event.eventImage} alt={event.name} />
-                    <h5>
-                      {event.name} {event.eventType}
-                    </h5>
-                    <br />
-                    <span>Organized by: {event.organizer} </span>
-                    <br />
-                    <>
-                      {/* Attendees */}
-                      <button onClick={toggleEventAttendees}>
-                        {!showAttendees ? "Show Attendees" : "Hide Attendees"}
-                      </button>
-
-                      {showAttendees ? (
-                        <div className="attendees">
-                          {attendees.map((attendee, index) => (
-                            <>
-                              {/* Attendee */}
-                              <div key={attendee.id} className="attendee">
-                                <p>
-                                  <img
-                                    src={attendee.avatar}
-                                    alt={attendee.firstName}
-                                  />
-                                  {"   "}
-                                  <span>
-                                    {" "}
-                                    {attendee.firstName} {attendee.lastName}{" "}
-                                  </span>
-                                </p>
-                                <p>
-                                  <button
-                                    className="clickable"
-                                    onClick={() =>
-                                      updateEventAttendance(
-                                        event.id,
-                                        attendee.id
-                                      )
-                                    }
-                                  >
-                                    Attending:
-                                  </button>
-                                  <span>
-                                    {attendee.attendance ? "✅" : "❌"}
-                                  </span>
-                                </p>
-
-                                <p>
-                                  <span>Note:</span> {attendee.note}
-                                </p>
-                              </div>
-                            </>
-                          ))}
-                        </div>
-                      ) : null}
-                    </>
-                  </li>
-                </>
+                <Event
+                  attendees={attendees}
+                  event={event}
+                  updateEventAttendance={updateEventAttendance}
+                />
               );
             })}
           </ul>
