@@ -1,6 +1,6 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
+// import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
@@ -39,13 +39,7 @@ function App() {
       <Header />
       <main>
         <div className="new-event">
-          <NewEventForm
-            handleAddEvent={handleAddEvent}
-            handleSubmit={handleSubmit}
-            handleTextChange={handleTextChange}
-            newEvent={newEvent}
-            handleSelectChange={handleSelectChange}
-          />
+          <NewEventForm handleAddEvent={handleAddEvent} />
         </div>
         <div className="events">
           <ul>
